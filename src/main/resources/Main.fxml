@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.studygram.fx_router.view.MainController">
+   <children>
+      <Button fx:id="btnTimeLimit" layoutX="114.0" layoutY="122.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="172.0" text="사용시간 제한 설정" />
+      <Button fx:id="btnGuestNetwork" layoutX="114.0" layoutY="48.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="172.0" text="게스트 네트워크 설정" />
+      <Button fx:id="btnAddOn" layoutX="114.0" layoutY="196.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="172.0" text="공지/광고" />
+   </children>
+</AnchorPane>

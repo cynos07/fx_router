@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+    <database>
+        <name>fx_router</name>
+        <id>cynos07</id>
+        <password>nslh13478</password>
+    </database>
+    <facebook>
+        <clientId>1903051689966506</clientId>
+        <clientSecret>f6d50c89a4acba8694c3587e4473b588</clientSecret>
+    </facebook>
+</configuration>

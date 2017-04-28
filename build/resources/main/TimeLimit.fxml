@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kr.studygram.fx_router.view.TimeLimitController">
+   <children>
+      <Button fx:id="btnSubmit" layoutX="273.0" layoutY="190.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="52.0" text="완료" />
+      <Label layoutX="78.0" layoutY="114.0" prefHeight="15.0" prefWidth="58.0" text="시작시간:" />
+      <Button fx:id="btnMain" layoutX="75.0" layoutY="63.0" mnemonicParsing="false" text="메인화면" />
+      <Label layoutX="78.0" layoutY="150.0" prefHeight="15.0" prefWidth="58.0" text="종료시간:" />
+      <Label fx:id="alertMessage" layoutX="78.0" layoutY="224.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <JFXTimePicker fx:id="timePickerEnd" layoutX="165.0" layoutY="136.0" promptText="11:35 PM" />
+      <JFXTimePicker fx:id="timePickerStart" layoutX="165.0" layoutY="100.0" promptText="8:35 AM" />
+   </children>
+</AnchorPane>
