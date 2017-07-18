@@ -1,5 +1,6 @@
 package kr.studygram.fx_router.view;
 
+import com.google.gson.JsonObject;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import kr.studygram.fx_router.MainApp;
 import kr.studygram.fx_router.model.GuestNetwork;
-import kr.studygram.fx_router.network.Server;
+import kr.studygram.fx_router.network.Client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,7 +90,27 @@ public class GuestNetworkController implements Initializable{
             GuestNetwork.getInstance().init(Double.parseDouble(frequencyBox.getSelectionModel().getSelectedItem().toString().substring(0,2)), ssid.getText(), password.getText());
         }
         alertMessage.setText("GuestWiFi가 생성되었습니다.");
-        Server.getInstance().sendMessage(ssid.getText()+" 게스트 네트워크가 생성되었습니다.");
+        JsonObject ssid_req = new JsonObject();
+        ssid_req.addProperty("command", "ssid");
+        ssid_req.addProperty("value", ssid.getText());
+
+
+        JsonObject pass_req = new JsonObject();
+        pass_req.addProperty("command", "pw");
+        pass_req.addProperty("value", password.getText());
+
+        JsonObject frequency_req = new JsonObject();
+        frequency_req.addProperty("command", "freq");
+        frequency_req.addProperty("value", frequencyBox.getSelectionModel().getSelectedItem().toString());
+
+        JsonObject secureLevel_req = new JsonObject();
+        secureLevel_req.addProperty("command", "encrypt");
+        secureLevel_req.addProperty("value", secureLevel.getSelectionModel().getSelectedItem().toString());
+
+        Client.getInstance().sendMessage(ssid_req.toString());
+        Client.getInstance().sendMessage(pass_req.toString());
+        Client.getInstance().sendMessage(frequency_req.toString());
+        Client.getInstance().sendMessage(secureLevel_req.toString());
     }
 
     public void handleBtnMain(ActionEvent event) {

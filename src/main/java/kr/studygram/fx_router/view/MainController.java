@@ -17,6 +17,7 @@ public class MainController implements Initializable{
     @FXML private Button btnGuestNetwork;
     @FXML private Button btnTimeLimit;
     @FXML private Button btnAddOn;
+    @FXML private Button btnRouter;
     private MainApp application;
 
     @Override
@@ -24,7 +25,12 @@ public class MainController implements Initializable{
         btnGuestNetwork.setOnAction(event -> handleBtnGuestNetwork(event));
         btnTimeLimit.setOnAction(event -> handleBtnTimeLimit(event));
         btnAddOn.setOnAction(event -> handleBtnAddOn(event));
+//        btnRouter.setOnAction(event -> handleBtnRouter(event));
     }
+
+//    public void handleBtnRouter(ActionEvent event) {
+//        application.gotoRouter();
+//    }
 
     public void handleBtnAddOn(ActionEvent event) {
         application.gotoAddOn();

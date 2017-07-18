@@ -1,5 +1,6 @@
 package kr.studygram.fx_router.view;
 
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import kr.studygram.fx_router.MainApp;
 import kr.studygram.fx_router.model.AddOnList;
-import kr.studygram.fx_router.network.Server;
+import kr.studygram.fx_router.network.Client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,7 +42,10 @@ public class AddAddOnController implements Initializable {
         }
         AddOnList.INSTANCE.add(title.getText(), url.getText());
         alertMessage.setText("추가되었습니다.");
-        Server.getInstance().sendMessage(title.getText()+" 광고가 추가되었습니다.");
+        JsonObject json = new JsonObject();
+        json.addProperty("command", "startPage");
+        json.addProperty("value", url.getText());
+        Client.getInstance().sendMessage(json.toString());
     }
 
     public void setApp(MainApp application) {

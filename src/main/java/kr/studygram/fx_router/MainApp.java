@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import kr.studygram.fx_router.network.Server;
+import kr.studygram.fx_router.network.Client;
 import kr.studygram.fx_router.view.AddOnController;
 import kr.studygram.fx_router.view.GuestNetworkController;
 import kr.studygram.fx_router.view.MainController;
@@ -26,14 +26,15 @@ public class MainApp extends Application {
         return root;
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Router");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
-        Thread server = new Thread(Server.getInstance());
-        server.start();
+        Thread client = new Thread(Client.getInstance());
+        client.start();
     }
 
     public void gotoAddOn() {
@@ -61,6 +62,15 @@ public class MainApp extends Application {
 //            Logger.getLogger(FXMLLoginDemoApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+//    public void gotoRouter() {
+//        try {
+//            RouterController router = (RouterController) replaceSceneContent("TimeLimit.fxml");
+//            router.setApp(this);
+//        } catch (Exception ex) {
+////            Logger.getLogger(FXMLLoginDemoApp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public void gotoTimeLimit() {
         try {
@@ -100,4 +110,5 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

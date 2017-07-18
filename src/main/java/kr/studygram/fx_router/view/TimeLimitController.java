@@ -1,5 +1,6 @@
 package kr.studygram.fx_router.view;
 
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXTimePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import kr.studygram.fx_router.MainApp;
 import kr.studygram.fx_router.model.TimeLimit;
-import kr.studygram.fx_router.network.Server;
+import kr.studygram.fx_router.network.Client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +48,18 @@ public class TimeLimitController implements Initializable{
         TimeLimit timeLimit = TimeLimit.getInstance();
         timeLimit.init(timePickerStart.getValue().toString(), timePickerEnd.getValue().toString());
         alertMessage.setText("사용시간이 설정되었습니다");
-        Server.getInstance().sendMessage(timePickerStart.getValue() + " ~ "+timePickerEnd.getValue()+" 사용시간 제한 설정.");
+
+        JsonObject json = new JsonObject();
+        json.addProperty("command", "setTime");
+        json.addProperty("option", "range");
+
+        JsonObject date = new JsonObject();
+        date.addProperty("start", timePickerStart.getValue().toString());
+        date.addProperty("end", timePickerEnd.getValue().toString());
+
+        JsonObject daysTime = new JsonObject();
+        json.add("value", date);
+        Client.getInstance().sendMessage(json.toString());
     }
 
     public void handleBtnMain(ActionEvent event) {

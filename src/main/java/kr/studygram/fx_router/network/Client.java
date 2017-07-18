@@ -1,9 +1,6 @@
 package kr.studygram.fx_router.network;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import sample.Controller;
 
 import java.io.*;
 import java.net.Socket;
@@ -11,15 +8,28 @@ import java.net.Socket;
 /**
  * Created by cynos07 on 2017-04-26.
  */
-public enum Client2 implements Runnable{
+public enum Client implements Runnable{
     INSTANCE;
+    private final String ipAddress;
     Socket socket;
-    private final int SERVER_PORT = 5555;
+    private final int SERVER_PORT;
     PrintWriter writer;
     BufferedReader reader;
     String line = null;
     private int status = 0;
     private ObservableList<String> listItems;
+
+//    public Client(String ipAddress, final int SERVER_PORT)
+//    {
+//        this.ipAddress = ipAddress;
+//        this.SERVER_PORT = SERVER_PORT;
+//    }
+
+    Client()
+    {
+        this.ipAddress = "10.220.146.61";
+        this.SERVER_PORT = 9999;
+    }
 
     public void init(ObservableList<String> listItems)
     {
@@ -29,7 +39,7 @@ public enum Client2 implements Runnable{
     @Override
     public void run() {
         try {
-            socket = new Socket("127.0.0.1", SERVER_PORT);
+            socket = new Socket(ipAddress, SERVER_PORT);
             OutputStream out = socket.getOutputStream();
             InputStream in = socket.getInputStream();
             writer = new PrintWriter(new OutputStreamWriter(out));
